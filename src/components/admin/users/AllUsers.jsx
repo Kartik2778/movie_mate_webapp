@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import UserCard from "./UserCard";
 import { CircularProgress } from "@mui/material";
 import axios from "axios";
+import axiosInstance from "../../../config/apiConfig";
 
 const AllUsers = () => {
   const [users, setUsers] = useState([]);
@@ -9,13 +10,8 @@ const AllUsers = () => {
 
   useEffect(() => {
     const fetchUsers = async () => {
-      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get("http://localhost:8085/admin/users", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axiosInstance.get("/admin/users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);

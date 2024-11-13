@@ -4,8 +4,8 @@ import MovieShowHeader from '../components/MovieShowHeader';
 import MovieShowsBody from '../components/MovieShowsBody';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import Message from '../components/Message';
+import axiosInstance from '../config/apiConfig';
 
 const MovieShowPage = () => {
   const { id: movieId } = useParams();
@@ -18,7 +18,7 @@ const MovieShowPage = () => {
   useEffect(() => {
     const fetchMovie = async () => {
       try {
-        const res = await axios.get(`http://localhost:8085/public/${movieId}/movie`);
+        const res = await axiosInstance.get(`/public/${movieId}/movie`);
         setMovie(res.data);
       } catch (error) {
         console.log("Error fetching movie:", error);
@@ -30,8 +30,8 @@ const MovieShowPage = () => {
   useEffect(() => {
     const fetchMovieShows = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8085/public/${movieId}/movie-show?city=${selectedCity}`
+        const res = await axiosInstance.get(
+          `/public/${movieId}/movie-show?city=${selectedCity}`
         );
         setMovieShows(res.data);
         setMovieShowError({message: "",flag: false});

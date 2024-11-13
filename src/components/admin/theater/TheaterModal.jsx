@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { NEW_THEATER_CREATED_ADMIN, SET_THEATER_ADMIN, UPDATE_THEATER_ADMIN } from "../../../slices/admin/theater";
+import axiosInstance from "../../../config/apiConfig";
 
 const TheaterModal = ({ title, buttonTitle, theater, open, close }) => {
   const [name, setName] = useState("");
@@ -38,14 +39,9 @@ const TheaterModal = ({ title, buttonTitle, theater, open, close }) => {
 
     try {
       if (title === "Create New Theater") {
-        const response = await axios.post(
-          "http://localhost:8085/admin/create-theater",
-          theaterData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axiosInstance.post(
+          "/admin/create-theater",
+          theaterData
         );
         dispatch(NEW_THEATER_CREATED_ADMIN(response.data));
       } else {

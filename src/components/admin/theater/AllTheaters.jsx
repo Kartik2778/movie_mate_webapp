@@ -5,6 +5,7 @@ import { CircularProgress } from "@mui/material";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_THEATER_ADMIN } from "../../../slices/admin/theater";
+import axiosInstance from "../../../config/apiConfig";
 
 
 const AllTheaters = () => {
@@ -17,13 +18,8 @@ const AllTheaters = () => {
   
     useEffect(() => {
       const fetchTheaters = async () => {
-        const token = localStorage.getItem("token");
         try {
-          const response = await axios.get("http://localhost:8085/admin/all-theater", {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+          const response = await axiosInstance.get("/admin/all-theater");
           dispatch(SET_THEATER_ADMIN(response.data));
         } catch (error) {
           console.error("Error fetching users:", error);

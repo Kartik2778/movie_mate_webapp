@@ -3,26 +3,21 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import SlideshowIcon from '@mui/icons-material/Slideshow';
 import MovieModal from "./MovieModal";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { DELETE_MOVIES_ADMIN } from "../../../slices/admin/movies";
+import axiosInstance from "../../../config/apiConfig";
 
 const MovieDetails = ({ movie }) => {
   const [isOpen, setIsOpen] = useState(false);
   
   const [openModal,setOpenModal] = useState(false);
   
-  const token = localStorage.getItem("token");
 
   const dispatch = useDispatch();
 
   const handleDeleteMovie = async () => {
     try{
-      await axios.delete(`http://localhost:8085/admin/${movie.movie_id}/delete-movie`,{
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      await axiosInstance.delete(`/admin/${movie.movie_id}/delete-movie`);
       dispatch(DELETE_MOVIES_ADMIN({movie_id: movie.movie_id}));
     }
     catch(error) {

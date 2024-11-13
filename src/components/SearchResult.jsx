@@ -3,6 +3,7 @@ import MovieCart from "./MovieCart";
 import { useSearchParams } from "react-router-dom";
 import Message from "./Message";
 import axios from "axios";
+import axiosInstance from "../config/apiConfig";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -16,8 +17,8 @@ const SearchResult = () => {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8085/public/movies/search?query=${query}`
+        const res = await axiosInstance.get(
+          `/public/movies/search?query=${query}`
         );
         setMovies(res.data);
         setErrorMovies({ message: "", flag: false });

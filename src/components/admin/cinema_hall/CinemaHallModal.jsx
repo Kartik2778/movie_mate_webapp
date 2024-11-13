@@ -10,7 +10,6 @@ const CinemaHallModal = ({ open, close }) => {
   const premiumSeatsRef = useRef();
   const vipSeatsRef = useRef();
 
-  const token = localStorage.getItem("token");
   const dispatch = useDispatch();
 
   const handleSubmit = async (e) => {
@@ -24,17 +23,11 @@ const CinemaHallModal = ({ open, close }) => {
       noOfVipSeats: vipSeatsRef.current.value,
     };
 
-    console.log(cinemaHallData);
 
     try {
       const response = await axios.post(
-        "http://localhost:8085/admin/create-cinemaHall",
-        cinemaHallData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        "/admin/create-cinemaHall",
+        cinemaHallData
       );
       dispatch(NEW_CINEMA_HALL_CREATED_ADMIN(response.data));
       console.log("Cinema Hall created:", response.data);

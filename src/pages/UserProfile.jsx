@@ -4,20 +4,15 @@ import UserBookings from '../components/user/UserBookings';
 import { useDispatch, useSelector } from 'react-redux';
 import { SET_USER_PROFILE } from '../slices/userProfile';
 import { CircularProgress } from '@mui/material';
-import axios from 'axios';
+import axiosInstance from '../config/apiConfig';
 
 const UserProfile = () => {
   const userProfile = useSelector(store => store.userProfile);
   const dispatch = useDispatch();
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     if (userProfile.firstName === "") {
-      axios.get("http://localhost:8085/user/profile", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).then(res => dispatch(SET_USER_PROFILE(res.data)))
+      axiosInstance.get("/user/profile").then(res => dispatch(SET_USER_PROFILE(res.data)))
         .catch(error => console.error('Error fetching user profile:', error));
     }
   }, [userProfile, dispatch, token]);

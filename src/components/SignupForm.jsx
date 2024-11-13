@@ -2,6 +2,7 @@ import React, { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Message from './Message'
+import axiosInstance from '../config/apiConfig';
 
 const SignupForm = () => {
 
@@ -10,7 +11,7 @@ const SignupForm = () => {
 
   async function signup(userInfo) {
     try{
-      const res = await axios.post('http://localhost:8085/public/register',userInfo);
+      const res = await axiosInstance.post('/public/register',userInfo);
       localStorage.setItem('token',res.data.token);
       localStorage.setItem('role',res.data.role);
       setSignupError({

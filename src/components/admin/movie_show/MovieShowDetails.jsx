@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import LiveTvIcon from '@mui/icons-material/LiveTv';
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { DELETE_MOVIE_SHOW_ADMIN } from "../../../slices/admin/movie_show";
+import axiosInstance from "../../../config/apiConfig";
 
 const MovieShowDetails = ({movieShow}) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,11 +14,7 @@ const MovieShowDetails = ({movieShow}) => {
   
   const handleDelete = async () => {
     try{
-      await axios.delete(`http://localhost:8085/admin/${movieShow.show_id}/delete-movie-show`,{
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+      await axiosInstance.delete(`/admin/${movieShow.show_id}/delete-movie-show`);
       dispatch(DELETE_MOVIE_SHOW_ADMIN({show_id: movieShow.show_id}));
     }
     catch(error) {

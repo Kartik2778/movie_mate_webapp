@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { useDispatch } from "react-redux";
 import { NEW_MOVIE_CREATED_ADMIN, UPDATE_MOVIES_ADMIN } from "../../../slices/admin/movies";
+import axiosInstance from "../../../config/apiConfig";
 
 const MovieModal = ({ title, btnTitle, movie, open, close }) => {
   const [movieTitle, setMovieTitle] = useState("");
@@ -12,7 +12,6 @@ const MovieModal = ({ title, btnTitle, movie, open, close }) => {
   const [languages, setLanguages] = useState("");
   const [type, setType] = useState("");
 
-  const token = localStorage.getItem('token');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -42,15 +41,11 @@ const MovieModal = ({ title, btnTitle, movie, open, close }) => {
 
     try {
       if (title === "Create New Movie") {
-        const response = await axios.post("http://localhost:8085/admin/create-movie", movieData, {
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        });
+        const response = await axiosInstance.post("/admin/create-movie", movieData);
         dispatch(NEW_MOVIE_CREATED_ADMIN(response.data));
         console.log("Movie created:", response.data);
       } else {
-        const response = await axios.put(`http://localhost:8085/admin/${movie.movie_id}/update-movie`, movieData,{
+        const response = await axiosInstance.put(`http://localhost:8085/admin/${movie.movie_id}/update-movie`, movieData,{
           headers: {
             Authorization: `Bearer ${token}`
           }

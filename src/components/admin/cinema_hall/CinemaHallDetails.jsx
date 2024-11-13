@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { DELETE_CINEMA_HALL_ADMIN } from "../../../slices/admin/cinemaHall";
+import axiosInstance from "../../../config/apiConfig";
 
 const CinemaHallDetails = ({cinemaHall}) => {
 
@@ -16,11 +17,7 @@ const CinemaHallDetails = ({cinemaHall}) => {
   const token = localStorage.getItem('token');
   const handleDeleteCinemaHall = async () => {
     try{
-      await axios.delete(`http://localhost:8085/admin/${cinemaHall.hall_id}/delete-cinemaHall`,{
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      })
+      await axiosInstance.delete(`/admin/${cinemaHall.hall_id}/delete-cinemaHall`)
       dispatch(DELETE_CINEMA_HALL_ADMIN({hall_id: cinemaHall.hall_id}))
     }
     catch(error) {

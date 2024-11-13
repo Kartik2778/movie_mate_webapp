@@ -5,7 +5,7 @@ import TheatersIcon from '@mui/icons-material/Theaters';
 import TheaterModal from "./TheaterModal";
 import { useDispatch } from "react-redux";
 import { DELETE_THEATER_ADMIN } from "../../../slices/admin/theater";
-import axios from "axios";
+import axiosInstance from "../../../config/apiConfig";
 
 const TheaterDetails = ({ theater }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,11 +18,7 @@ const TheaterDetails = ({ theater }) => {
 
   const handleDelete = async () => {
       try{
-        await axios.delete(`http://localhost:8085/admin/${theater.theater_id}/delete-theater`,{
-          headers: {
-            Authorization: `Bearer ${token}`
-          }
-        })
+        await axiosInstance.delete(`/admin/${theater.theater_id}/delete-theater`)
         dispatch(DELETE_THEATER_ADMIN({theater_id: theater.theater_id}))
       }
       catch(error) {

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
 import { SET_MOVIES_ADMIN } from "../../../slices/admin/movies";
 import { CircularProgress } from "@mui/material";
+import axiosInstance from "../../../config/apiConfig";
 
 const AllMovies = () => {
   const [open, setOpen] = useState(false);
@@ -15,15 +16,9 @@ const AllMovies = () => {
 
   useEffect(() => {
     const fetchTheaters = async () => {
-      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(
-          "http://localhost:8085/admin/all-movies",
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axiosInstance.get(
+          "/admin/all-movies"
         );
         dispatch(SET_MOVIES_ADMIN(response.data));
       } catch (error) {

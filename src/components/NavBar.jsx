@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { SET_CITIES, UPDATE_CITY_VALUE } from "../slices/SelectCity";
 import { RESET_USER_PROFILE } from "../slices/userProfile";
 import axios from "axios";
+import axiosInstance from "../config/apiConfig";
 
 const NavBar = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
@@ -18,7 +19,7 @@ const NavBar = () => {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const res = await axios.get("http://localhost:8085/public/all-cities");
+        const res = await axiosInstance.get("/public/all-cities");
         dispatch(SET_CITIES(res.data));
       } catch (error) {
         console.log("Error fetching cities:", error);

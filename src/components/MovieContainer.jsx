@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Arrow from "./Arrow";
 import axios from "axios";
+import axiosInstance from "../config/apiConfig";
 
 function MovieContainer() {
   const settings = {
@@ -21,7 +22,7 @@ function MovieContainer() {
   useEffect(() => {
     const fetchMovies = async () => {
       try {
-        const res = await axios.get('http://localhost:8085/public/latest-movies');
+        const res = await axiosInstance.get('/public/latest-movies');
         setMovies(res.data);
       } catch (error) {
         console.log("error", error);

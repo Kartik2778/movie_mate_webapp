@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Message from './Message'
-import axios from 'axios';
+import axiosInstance from '../config/apiConfig';
 
 const LoginForm = () => {
   const emailRef = useRef();
@@ -13,7 +13,7 @@ const LoginForm = () => {
 
   const loginRequest = async (userData) => {
     try{
-      const res = await axios.post('http://localhost:8085/public/login',userData);
+      const res = await axiosInstance.post('/public/login',userData);
       localStorage.setItem('token',res.data.token);
       localStorage.setItem('role',res.data.role);
       setLoginError({message: "",flag: false})

@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import MovieShowDetails from "./MovieShowDetails";
 import MovieShowModal from "./MovieShowModal";
 import { useDispatch, useSelector } from "react-redux";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import { SET_MOVIE_SHOW_ADMIN } from "../../../slices/admin/movie_show";
 import { CircularProgress } from "@mui/material";
+import axiosInstance from "../../../config/apiConfig";
 
 const AllMovieShows = () => {
   const [open, setOpen] = useState(false);
@@ -16,15 +16,9 @@ const AllMovieShows = () => {
 
   useEffect(() => {
     const fetchMovieShows = async () => {
-      const token = localStorage.getItem("token");
       try {
-        const response = await axios.get(
-          `http://localhost:8085/admin/cinema-hall/${cinemaHallId}/movie-shows`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const response = await axiosInstance.get(
+          `admin/cinema-hall/${cinemaHallId}/movie-shows`
         );
         dispatch(SET_MOVIE_SHOW_ADMIN(response.data));
       } catch (error) {

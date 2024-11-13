@@ -1,8 +1,8 @@
-import axios from "axios";
 import React, { useRef, useState } from "react";
 import { useDispatch } from "react-redux";
 import { NEW_MOVIE_SHOW_CREATED_ADMIN } from "../../../slices/admin/movie_show";
 import Message from "../../Message";
+import axiosInstance from "../../../config/apiConfig";
 
 const MovieShowModal = ({ cinemaHallId, open, close }) => {
   const movieNameRef = useRef();
@@ -15,7 +15,6 @@ const MovieShowModal = ({ cinemaHallId, open, close }) => {
   const vipSeatPrice = useRef();
 
   const dispatch = useDispatch();
-  const token = localStorage.getItem("token");
 
   const [errorMessage, setErrorMessage] = useState({
     message: "",
@@ -38,14 +37,9 @@ const MovieShowModal = ({ cinemaHallId, open, close }) => {
     };
 
     try {
-      const res = await axios.post(
-        `http://localhost:8085/admin/${cinemaHallId}/create-movie-show`,
-        movieShowData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+      const res = await axiosInstance.post(
+        `/admin/${cinemaHallId}/create-movie-show`,
+        movieShowData
       );
 
       dispatch(NEW_MOVIE_SHOW_CREATED_ADMIN(res.data)); // dispatch action to Redux

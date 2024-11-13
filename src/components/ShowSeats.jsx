@@ -3,6 +3,7 @@ import Seat from "./Seat";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import axiosInstance from "../config/apiConfig";
 
 const ShowSeats = () => {
   const { id: showId } = useParams("id");
@@ -15,13 +16,8 @@ const ShowSeats = () => {
   useEffect(() => {
     const fetchSeats = async () => {
       try {
-        const res = await axios.get(
-          `http://localhost:8085/user/${showId}/show-seats`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+        const res = await axiosInstance.get(
+          `/user/${showId}/show-seats`
         );
         setSeats(res.data);
       } catch (error) {
@@ -32,8 +28,8 @@ const ShowSeats = () => {
     };
     const fetchSeatDetails = async () => {
         try {
-            const res = await axios.get(
-              `http://localhost:8085/user/${showId}/show-seat-details`,
+            const res = await axiosInstance.get(
+              `/user/${showId}/show-seat-details`,
               {
                 headers: {
                   Authorization: `Bearer ${token}`,
