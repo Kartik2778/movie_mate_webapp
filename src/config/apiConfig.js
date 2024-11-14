@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://serene-joy-production.up.railway.app',
+  baseURL: 'https://movie-mate-webapp-bakcend-production.up.railway.app',
 });
 
 axiosInstance.interceptors.request.use((config) => {
