@@ -31,8 +31,8 @@ const SearchResult = () => {
 
   return (
     <div className="w-full flex justify-center mb-10 mt-10">
-      {(errorMovies.flag || movies.length === 0 ) ? (
-        <Message severity={"success"} >{errorMovies.message || "No Movie found"}</Message>
+      {(errorMovies.flag) ? (
+        <Message severity={"success"} >{errorMovies.message}</Message>
       ) : (
         <div className="w-[90%] flex flex-wrap gap-5">
           {movies.map((movie) => (
