@@ -14,19 +14,19 @@ export default function SimpleSlider() {
     autoplaySpeed: 3000,
   };
   return (
-    <div className="w-[90%] ml-[5%] mt-5 mb-5">
+    <div className="w-[95%] ml-[3%] mt-2">
       <Slider {...settings}>
         <div>
           <img
             className="w-full h-[83vh] object-cover"
-            src="https://raw.githubusercontent.com/Kartik2778/project_images/main/venom.png"
+            src="https://raw.githubusercontent.com/Kartik2778/project_images/main/poster2.jpg"
             alt="..."
           />
         </div>
         <div>
           <img
-            className="w-full h-[82vh] object-cover"
-            src="https://raw.githubusercontent.com/Kartik2778/project_images/main/batman.jpg"
+            className="w-full h-[83vh] object-cover"
+            src="https://raw.githubusercontent.com/Kartik2778/project_images/main/poster1.png"
             alt="..."
           />
         </div>

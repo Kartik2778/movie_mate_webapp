@@ -3,8 +3,8 @@ import Slider from "react-slick";
 import MovieCart from "./MovieCart";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import Arrow from "./Arrow";
-import axios from "axios";
+import RightArrow from './RIghtArrow'
+import LeftArrow from './LeftArrow'
 import axiosInstance from "../config/apiConfig";
 
 function MovieContainer() {
@@ -13,8 +13,8 @@ function MovieContainer() {
     speed: 500,
     slidesToShow: 4,
     slidesToScroll: 1,
-    nextArrow: <Arrow />,
-    prevArrow: <Arrow />
+    nextArrow: <RightArrow />,
+    prevArrow: <LeftArrow />
   };
 
   const [movies, setMovies] = useState([]);
