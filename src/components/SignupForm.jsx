@@ -68,31 +68,28 @@ const SignupForm = () => {
         <h2 className="text-3xl font-bold text-center text-gray-800">Sign Up</h2>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="firstName">First Name</label>
+            <label className="block text-sm font-medium text-gray-700">Name</label>
+            <div className='flex gap-2'>
             <input
               type="text"
-              name="firstName"
               ref={firstNameRef}
               required
               className="w-full px-4 py-2 mt-1 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your first name"
             />
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700" htmlFor="lastName">Last Name</label>
-            <input
+             <input
               type="text"
-              name="lastName"
               ref={lastNameRef}
               className="w-full px-4 py-2 mt-1 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Enter your last name"
             />
+            </div>
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-700" htmlFor="email">Email</label>
             <input
               type="email"
-              name="email"
+              id='email'
               ref={emailRef}
               required
               className="w-full px-4 py-2 mt-1 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -103,7 +100,7 @@ const SignupForm = () => {
             <label className="block text-sm font-medium text-gray-700" htmlFor="password">Password</label>
             <input
               type="password"
-              name="password"
+              id="password"
               ref={passwordRef}
               required
               className="w-full px-4 py-2 mt-1 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -114,7 +111,7 @@ const SignupForm = () => {
             <label className="block text-sm font-medium text-gray-700" htmlFor="phone">Phone</label>
             <input
               type="text"
-              name="phone"
+              id="phone"
               ref={phoneRef}
               required
               className="w-full px-4 py-2 mt-1 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -127,28 +124,28 @@ const SignupForm = () => {
             <label className="block text-sm font-medium text-gray-700">Address</label>
             <input
               type="text"
-              name="street"
               ref={streetRef}
               className="w-full px-4 py-2 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Street Address"
             />
+            <div className='flex gap-2'>
             <input
               type="text"
-              name="city"
               ref={cityRef}
               className="w-full px-4 py-2 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="City"
             />
             <input
               type="text"
-              name="state"
               ref={stateRef}
               className="w-full px-4 py-2 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="State"
             />
+            </div>
+            
+            
             <input
               type="text"
-              name="country"
               ref={countryRef}
               className="w-full px-4 py-2 text-gray-900 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="Country"
