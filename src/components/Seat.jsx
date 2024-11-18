@@ -6,7 +6,7 @@ const Seat = ({ getId, seat }) => {
   const handleSetSelection = (seat) => {
     if (!seat.status) { 
       setSelected(!selected);
-      getId(seat);
+      getId(seat.id);
     }
   };
 

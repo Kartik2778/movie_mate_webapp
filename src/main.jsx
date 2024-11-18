@@ -15,6 +15,8 @@ import UserProfile from "./pages/UserProfile.jsx";
 import SearchResults from "./components/SearchResult.jsx";
 import AllMovieShows from "./components/admin/movie_show/AllMovieShows.jsx";
 import MovieShowPage from "./pages/MovieShowPage.jsx";
+import PaymentSuccess from "./components/PaymentSuccess.jsx";
+import PaymentFailed from "./components/PaymentFailed.jsx";
 
 import {
   createBrowserRouter,
@@ -28,6 +30,14 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/payment-failed",
+        element: <PaymentFailed/>
+      },
+      {
+        path: "/payment-success",
+        element: <PaymentSuccess/>
+      },
       {
         path: "/",
         element: <HomePage />,
@@ -87,9 +97,7 @@ const router = createBrowserRouter([
 ]);
 
 createRoot(document.getElementById("root")).render(
-  <StrictMode>
     <Provider store={store}>
       <RouterProvider router={router} />
     </Provider>
-  </StrictMode>
 );

@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const axiosInstance = axios.create({
-  baseURL: 'https://movie-mate-webapp-bakcend-production.up.railway.app',
+  baseURL: 'http://localhost:8085',
 });
 
 axiosInstance.interceptors.request.use((config) => {
@@ -15,3 +15,6 @@ axiosInstance.interceptors.request.use((config) => {
 });
 
 export default axiosInstance;
+
+
+// https://movie-mate-webapp-bakcend-production.up.railway.app

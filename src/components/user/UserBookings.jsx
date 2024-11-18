@@ -1,68 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Message from '../Message'
 import BookingDetails from './BookingDetails'
+import axiosInstance from "../../config/apiConfig";
 
 const UserBookings = () => {
-  const bookingsData = [
-    {
-      booking_id: 1,
-      bookingDate: "2024-11-03T15:30:00",
-      numberOfSeats: 3,
-      totalPrice: 45.0,
-      status: "Confirmed",
-      movieShow: {
-        theaterName: "Grand Cinema Theater",
-        cinemaHallName: "Hall 1",
-        address: {
-          street: "123 Main St",
-          city: "Metropolis",
-          state: "NY",
-        },
-      },
-      seats: [{ number: "A1" }, { number: "A2" }, { number: "A3" }],
-    },
-    {
-      booking_id: 1,
-      bookingDate: "2024-11-03T15:30:00",
-      numberOfSeats: 3,
-      totalPrice: 45.0,
-      status: "Confirmed",
-      movieShow: {
-        theaterName: "Grand Cinema Theater",
-        cinemaHallName: "Hall 1",
-        address: {
-          street: "123 Main St",
-          city: "Metropolis",
-          state: "NY",
-        },
-      },
-      seats: [{ number: "A1" }, { number: "A2" }, { number: "A3" }],
-    },
-    {
-      booking_id: 1,
-      bookingDate: "2024-11-03T15:30:00",
-      numberOfSeats: 3,
-      totalPrice: 45.0,
-      status: "Confirmed",
-      movieShow: {
-        theaterName: "Grand Cinema Theater",
-        cinemaHallName: "Hall 1",
-        address: {
-          street: "123 Main St",
-          city: "Metropolis",
-          state: "NY",
-        },
-      },
-      seats: [{ number: "A1" }, { number: "A2" }, { number: "A3" }],
+
+  const [bookings,setBookings] = useState([]);
+
+  useEffect(() => {
+    const fetchBookings = async () => {
+      try{
+        const response = await axiosInstance.get("user/all-bookings");
+        setBookings(response.data);
+      }
+      catch(error) {
+        console.log(error);
+      }
     }
-  ]
+    fetchBookings();
+  },[]);
 
  
-
   return (
     <div className="flex gap-5 mt-10 flex-wrap">
       {
-        bookingsData.length === 0 ? <Message>You Don't Have Any Bookings</Message> : bookingsData.map( booking => <BookingDetails booking={booking} /> )
+        bookings.length === 0 ? <Message>You Don't Have Any Bookings</Message> : bookings.map( booking => <BookingDetails booking={booking} /> )
       }
     </div>
   );

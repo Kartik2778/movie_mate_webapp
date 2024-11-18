@@ -15,7 +15,7 @@ const UserProfile = () => {
       axiosInstance.get("/user/profile").then(res => dispatch(SET_USER_PROFILE(res.data)))
         .catch(error => console.error('Error fetching user profile:', error));
     }
-  }, [userProfile, dispatch, token]);
+  }, [userProfile, dispatch]);
 
   return (
     userProfile.firstName === "" ? (

@@ -34,26 +34,26 @@ const BookingDetails = ({ booking }) => {
       {/* Movie Show Details */}
       <h3 className="text-lg font-semibold mt-4 mb-2">Movie Show Details</h3>
       <p className="mb-1">
-        <strong>Theater:</strong> {movieShow.theaterName}
+        <strong>Theater:</strong> {movieShow.cinemaHall.theater.name}
       </p>
       <p className="mb-1">
-        <strong>Cinema Hall:</strong> {movieShow.cinemaHallName}
+        <strong>Cinema Hall:</strong> {movieShow.cinemaHall.name}
       </p>
       <p className="mb-1">
-        <strong>Show Date:</strong> {"Date"}
+        <strong>Show Date:</strong> {movieShow.showDate}
       </p>
       <p className="mb-1">
-        <strong>Timing:</strong> {"Timing"}
+        <strong>Timing:</strong> {movieShow.startTime}
       </p>
       <p className="mb-1">
-        <strong>Address:</strong> {movieShow.address.street}, {movieShow.address.city}, {movieShow.address.state}
+        <strong>Address:</strong> {movieShow.cinemaHall.theater.address.street}, {movieShow.cinemaHall.theater.address.city}, {movieShow.cinemaHall.theater.address.state}
       </p>
 
       {/* Seat Numbers */}
       <h3 className="text-lg font-semibold mt-4 mb-2">Seat Numbers</h3>
       <ul className="list-disc list-inside">
         {seats.map((seat, index) => (
-          <li key={index}>{seat.number}</li>
+          <li key={index}>{seat.seatNumber}</li>
         ))}
       </ul>
     </div>
