@@ -1,18 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { SET_CITIES, UPDATE_CITY_VALUE } from "../slices/SelectCity";
 import { RESET_USER_PROFILE } from "../slices/userProfile";
-import axios from "axios";
 import axiosInstance from "../config/apiConfig";
 
-const NavBar = () => {
+const NavBar2 = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
   const role = localStorage.getItem("role");
   const searchText = useRef("");
-  const navigate = useNavigate();
   const { selectedCity, cities } = useSelector((store) => store.selectedCity);
   const dispatch = useDispatch();
 
@@ -32,10 +29,6 @@ const NavBar = () => {
     dispatch(UPDATE_CITY_VALUE(event.target.value));
   };
 
-  const handleSearchOperation = () => {
-    navigate(`/search?query=${encodeURIComponent(searchText.current.value)}`);
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("role");
@@ -46,30 +39,11 @@ const NavBar = () => {
   return (
     <div className="flex items-center justify-between bg-red-600 p-3">
       <div className="ml-5 flex gap-5">
-        <Link to="/" className="text-white font-medium text-lg">
-          Movie Mate
-        </Link>
-        <div className="flex bg-white w-96 items-center rounded-full p-2">
-          <input
-            className="w-full h-[100%] bg-transparent focus:outline-none pl-3 pr-2"
-            type="text"
-            placeholder="Search movies..."
-            ref={searchText}
-            onKeyDown={(e) => e.key === "Enter" && handleSearchOperation()}
-          />
-          <SearchIcon
-            className="w-full h-[100%] text-gray-600 cursor-pointer"
-            onClick={handleSearchOperation}
-          />
-        </div>
+        <Link to={`/`} className="text-white font-medium text-lg">Movie Mate</Link>
       </div>
       <div className="flex gap-5 items-center mr-5">
         <div>
-          <select
-            className="p-1 focus:outline-none"
-            value={selectedCity}
-            onChange={handleSelectCity}
-          >
+          <select className="p-1 focus:outline-none" value={selectedCity} onChange={handleSelectCity}>
             {cities.map((city, index) => (
               <option key={index} value={city}>
                 {city}
@@ -81,18 +55,12 @@ const NavBar = () => {
           {token ? (
             <div className="flex gap-5 items-center">
               {role === "ROLE_ADMIN" && (
-                <Link
-                  to="/admin-panel"
-                  className="text-white hover:text-gray-300 transition duration-200"
-                >
+                <Link to="/admin-panel" className="text-white">
                   Admin
                 </Link>
               )}
-              <Link to="/user-profile">
-                <AccountCircleIcon
-                  className="text-white hover:text-gray-300 cursor-pointer transition duration-200"
-                  fontSize="large"
-                />
+              <Link to="user-profile">
+                <AccountCircleIcon className="text-white" fontSize="large" />
               </Link>
               <button
                 onClick={handleLogout}
@@ -121,4 +89,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default NavBar2;

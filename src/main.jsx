@@ -1,4 +1,3 @@
-import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";
@@ -17,6 +16,7 @@ import AllMovieShows from "./components/admin/movie_show/AllMovieShows.jsx";
 import MovieShowPage from "./pages/MovieShowPage.jsx";
 import PaymentSuccess from "./components/PaymentSuccess.jsx";
 import PaymentFailed from "./components/PaymentFailed.jsx";
+import NotFoundPage from "./components/NotFoundPage.jsx"; // Import the 404 Page component
 
 import {
   createBrowserRouter,
@@ -32,11 +32,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/payment-failed",
-        element: <PaymentFailed/>
+        element: <PaymentFailed />,
       },
       {
         path: "/payment-success",
-        element: <PaymentSuccess/>
+        element: <PaymentSuccess />,
       },
       {
         path: "/",
@@ -92,12 +92,16 @@ const router = createBrowserRouter([
         path: "search",
         element: <SearchResults />,
       },
+      {
+        path: "*", // Catch-all route for undefined paths
+        element: <NotFoundPage />,
+      },
     ],
   },
 ]);
 
 createRoot(document.getElementById("root")).render(
-    <Provider store={store}>
-      <RouterProvider router={router} />
-    </Provider>
+  <Provider store={store}>
+    <RouterProvider router={router} />
+  </Provider>
 );

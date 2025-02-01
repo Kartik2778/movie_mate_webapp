@@ -37,16 +37,9 @@ const AllCinemaHalls = () => {
           <CircularProgress />
         </div>
       ) : (
+        
         <div className="flex flex-col gap-2 m-5">
-          <div className="flex flex-col gap-2">
-            {cinemaHalls.map((cinemaHall) => (
-              <CinemaHallDetails
-                key={cinemaHalls.hall_id}
-                cinemaHall={cinemaHall}
-              />
-            ))}
-          </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center m-5">
             <button
               className="pt-2 pb-2 pl-5 pr-5 bg-blue-700 rounded-md text-white"
               onClick={() => setOpen(true)}
@@ -55,6 +48,15 @@ const AllCinemaHalls = () => {
             </button>
             <CinemaHallModal open={open} close={() => setOpen(false)} />
           </div>
+          <div className="flex flex-col gap-2">
+            {cinemaHalls.map((cinemaHall) => (
+              <CinemaHallDetails
+                key={cinemaHalls.hall_id}
+                cinemaHall={cinemaHall}
+              />
+            ))}
+          </div>
+          
         </div>
       )}
     </>

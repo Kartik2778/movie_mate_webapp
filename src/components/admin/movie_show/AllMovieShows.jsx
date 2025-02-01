@@ -9,7 +9,7 @@ import axiosInstance from "../../../config/apiConfig";
 
 const AllMovieShows = () => {
   const [open, setOpen] = useState(false);
-  const { id: cinemaHallId } = useParams(); // Destructure 'id' from useParams directly
+  const { id : cinemaHallId } = useParams(); // Destructure 'id' from useParams directly
   const dispatch = useDispatch();
   const movieShows = useSelector((store) => store.movieShow_admin);
   const [loading, setLoading] = useState(true);

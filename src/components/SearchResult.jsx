@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import MovieCart from "./MovieCart";
 import { useSearchParams } from "react-router-dom";
 import Message from "./Message";
-import axios from "axios";
 import axiosInstance from "../config/apiConfig";
+import NavBar2 from "./NavBar2";
 
 const SearchResult = () => {
   const [searchParams] = useSearchParams();
@@ -30,16 +30,19 @@ const SearchResult = () => {
   }, []);
 
   return (
-    <div className="w-full flex justify-center mb-10 mt-10">
-      {(errorMovies.flag) ? (
-        <Message severity={"success"} >{errorMovies.message}</Message>
-      ) : (
-        <div className="w-[90%] flex flex-wrap gap-5">
-          {movies.map((movie) => (
-            <MovieCart key={movie.movie_id} movie={movie} />
-          ))}
-        </div>
-      )}
+    <div>
+      <NavBar2 />
+      <div className="w-full flex justify-center mb-10 mt-10">
+        {errorMovies.flag ? (
+          <Message severity={"success"}>{errorMovies.message}</Message>
+        ) : (
+          <div className="w-[90%] flex flex-wrap gap-5">
+            {movies.map((movie) => (
+              <MovieCart key={movie.movie_id} movie={movie} />
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

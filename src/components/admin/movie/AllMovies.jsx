@@ -39,12 +39,7 @@ const AllMovies = () => {
         </div>
       ) : (
         <div className="flex flex-col m-5">
-          <div className="flex flex-col">
-            {movies.map((movie) => (
-              <MovieDetails movie={movie} key={movie.movie_id} />
-            ))}
-          </div>
-          <div className="flex justify-center">
+          <div className="flex justify-center m-5">
             <button
               className="pt-2 pb-2 pl-5 pr-5 bg-blue-700 rounded-md text-white"
               onClick={() => setOpen(true)}
@@ -59,6 +54,12 @@ const AllMovies = () => {
               close={() => setOpen(false)}
             />
           </div>
+          <div className="flex flex-col">
+            {movies.map((movie) => (
+              <MovieDetails movie={movie} key={movie.movie_id} />
+            ))}
+          </div>
+          
         </div>
       )}
     </>
