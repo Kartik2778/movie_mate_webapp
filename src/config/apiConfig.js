@@ -3,7 +3,7 @@ import axios from 'axios';
 // 'https://movie-mate-webapp-bakcend-production.up.railway.app'
 
 const axiosInstance = axios.create({
-  baseURL: 'http://localhost:8085',
+  baseURL: 'https://moviemate-deployemnt-latest.onrender.com',
 });
 
 axiosInstance.interceptors.request.use((config) => {
