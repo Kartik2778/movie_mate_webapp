@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { SET_USER_PROFILE } from '../slices/userProfile';
 import { CircularProgress } from '@mui/material';
 import axiosInstance from '../config/apiConfig';
+import NavBar2 from '../components/NavBar2'
 
 const UserProfile = () => {
   const userProfile = useSelector(store => store.userProfile);
@@ -23,6 +24,8 @@ const UserProfile = () => {
         <CircularProgress />
       </div>
     ) : (
+      <>
+      <NavBar2/>
       <div className='w-full min-h-screen flex bg-gray-100'>
         <div className='w-[30%] flex justify-center'>
           <UserDetails />
@@ -31,6 +34,8 @@ const UserProfile = () => {
           <UserBookings />
         </div>
       </div>
+      </>
+      
     )
   );
 };
